@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.Random;
 
-
 /**
  * Template for HW01: Treasurehunt.
  * More information:
@@ -100,14 +99,18 @@ public class HW01 {
         		whatDigging = enterArguments("\nMida kaevame (rida, veerg): ");
     		} while (!checkInput(whatDigging, 2));
         	
-        	if(checkDigging(whatDigging)){
-        		printMap(guessingMap);
-        		System.out.println("AARE!\n");
-        		setTreasures(getTreasures()-1);
-        	} else {
-        		printMap(guessingMap);
-        	}
-        	setDigging(getDigging()+1);
+        	try {
+				if(checkDigging(whatDigging)){
+					printMap(guessingMap);
+					System.out.println("AARE!\n");
+					setTreasures(getTreasures()-1);
+				} else {
+					printMap(guessingMap);
+				}
+				setDigging(getDigging()+1);
+			} catch (Exception e) {
+				System.out.println("The cell does not exist.");
+			}
 		}
     	printScore();
     	
